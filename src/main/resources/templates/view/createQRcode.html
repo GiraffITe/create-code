@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="//www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="css/design.css" rel="stylesheet">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>バーコード生成</h1>
+	<p>文字を入力してください</p>
+	<form th:action="@{/code}" th:object="${createCode}" method="post">
+		<p th:errors="*{all}" class="error-message"/>
+		<input type="text" th:field="*{contents}" /><br><br>
+		<input type="submit" th:value = "TIFバーコード" name="kindCode"/>
+		<input type="submit" value = "QRコード" name="kindCode" /><br>
+	
+	
+		<div th:if="${flag}">
+			<br><img th:src="|data:image/png;base64, ${dataUrl}|" class="barcode">
+		</div>
+	</form>
+		
+	
+</body>
+</html>
